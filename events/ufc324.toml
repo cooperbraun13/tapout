@@ -37,7 +37,7 @@ order = 2 # co-main event
 
 
     [fights.fighter_b]
-    name = "Amanda Nunes"
+    name = "Amada Nunes"
     record = "23-5-0"
     ranking = "Unranked"
     lastFive = "W W L W W"
