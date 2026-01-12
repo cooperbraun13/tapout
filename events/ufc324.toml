@@ -1,5 +1,7 @@
 name = "UFC 324"
 date = "2026-01-24"
+location = "Las Vegas, Nevada"
+venue = "T-Mobile Arena"
 
 [[fights]]
 order = 1 # main event
