@@ -1,9 +1,18 @@
 package event
 
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/BurntSushi/toml"
+)
+
 type Event struct {
-	Name   string  `toml:"name"`
-	Date   string  `toml:"date"`
-	Fights []Fight `toml:"fights"`
+	Name     string  `toml:"name"`
+	Date     string  `toml:"date"`
+	Location string  `toml:"location"`
+	Venue    string  `toml:"venue"`
+	Fights   []Fight `toml:"fights"`
 }
 
 type Fight struct {
@@ -20,4 +29,14 @@ type Fighter struct {
 	Division string `toml:"division"`
 	Type     string `toml:"type"`
 	Odds     int    `toml:"odds"`
+}
+
+func hello() {
+	// load from TOML
+	var event Event
+	toml.DecodeFile("events/ufc324.toml", &event)
+
+	// save as JSON
+	file, _ := os.Create("picks/ufc324.json")
+	json.NewEncoder(file).Encode(event)
 }
