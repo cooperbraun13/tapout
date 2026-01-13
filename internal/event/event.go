@@ -4,11 +4,13 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 )
 
 type Event struct {
+	Slug     string  // "ufc324" - derived from filename as an identifier for matching output files
 	Name     string  `toml:"name"`
 	Date     string  `toml:"date"`
 	Location string  `toml:"location"`
@@ -52,6 +54,11 @@ func LoadAll() ([]Event, error) {
 		if filepath.Ext(file.Name()) != ".toml" {
 			continue
 		}
+		// Extract slug to use as an identifier: "ufc324.toml" -> "ufc324"
+		// Can use this so our picks file saves with the same name
+		slug := strings.TrimSuffix(file.Name(), ".toml")
+		event.Slug = slug
+
 		// toml.DecodeFile expects a string (for the path) so we need to combine the directory we gave
 		// and call the .Name method on the file (which is a os.DirEntry object) and combine them
 		// to get the full correct path

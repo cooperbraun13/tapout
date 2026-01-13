@@ -4,14 +4,13 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/cooperbraun13/tapout/internal/event"
 )
 
 type Picks struct {
-	EventName string
-	Results   map[int]event.Fighter // Maps fight to the winning fighter
+	Event   *event.Event
+	Results map[int]event.Fighter // Maps fight to the winning fighter
 }
 
 // Save picks to json
@@ -25,7 +24,7 @@ func (p *Picks) Save() error {
 	}
 
 	// Create the file at the specified full path, i.e., picks/ufc324.json
-	filename := strings.ToLower(strings.ReplaceAll(p.EventName, " ", "")) + ".json"
+	filename := p.Event.Slug + ".json"
 	fullPath := filepath.Join(dir, filename)
 	file, err := os.Create(fullPath)
 	if err != nil {
