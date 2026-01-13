@@ -32,9 +32,11 @@ type Fighter struct {
 	Odds     int    `toml:"odds"`
 }
 
-func LoadAll(dir string) ([]Event, error) {
+func LoadAll() ([]Event, error) {
 	// Slice of Events where we load our .toml files into
 	var events []Event
+	// Directory where we store the event data
+	dir := "events"
 
 	// Get the list of files from a specified directory. In our case, we will be grabbing the .toml files from
 	// the /events directory primarily
