@@ -6,109 +6,109 @@ venue = "T-Mobile Arena"
 [[fights]]
 order = 1 # main event
 
-    [fights.fighter_a]
-    name = "Justin Gaethje"
-    record = "26-5-0"
-    ranking = "4"
-    lastFive = "W L W W L"
-    division = "Lightweight"
-    type = "Striker"
-    odds = +165
+[fights.fighter_a]
+name = "Justin Gaethje"
+record = "26-5-0"
+ranking = "4"
+lastFive = "W L W W L"
+division = "Lightweight"
+type = "Striker"
+odds = +200
 
 
-    [fights.fighter_b]
-    name = "Paddy Pimblett"
-    record = "23-3-0"
-    ranking = "5"
-    lastFive = "W W W W W"
-    division = "Lightweight"
-    type = "Grappler"
-    odds = -215
+[fights.fighter_b]
+name = "Paddy Pimblett"
+record = "23-3-0"
+ranking = "5"
+lastFive = "W W W W W"
+division = "Lightweight"
+type = "Grappler"
+odds = -250
 
 [[fights]]
 order = 2 # co-main event
 
-    [fights.fighter_a]
-    name = "Kayla Harrison"
-    record = "19-1-0"
-    ranking = "C"
-    lastFive = "W W W W L"
-    division = "Bantamweight"
-    type = "Grappler"
-    odds = -210
+[fights.fighter_a]
+name = "Sean O'Malley"
+record = "18-3-0"
+ranking = "3"
+lastFive = "L L W W W"
+division = "Bantamweight"
+type = "Striker"
+odds = -220
 
 
-    [fights.fighter_b]
-    name = "Amanda Nunes"
-    record = "23-5-0"
-    ranking = "Unranked"
-    lastFive = "W W L W W"
-    division = "Bantamweight"
-    type = "Striker"
-    odds = +160
+[fights.fighter_b]
+name = "Yadong Song"
+record = "22-8-1"
+ranking = "5"
+lastFive = "W L W W L"
+division = "Bantamweight"
+type = "Striker"
+odds = +180
 
 [[fights]]
-order = 3 # featured fight
+order = 3
 
-    [fights.fighter_a]
-    name = "Sean O'Malley"
-    record = "18-3-0"
-    ranking = "3"
-    lastFive = "L L W W W"
-    division = "Bantamweight"
-    type = "Striker"
-    odds = -250
+[fights.fighter_a]
+name = "Waldo Cortes-Acosta"
+record = "16-2-0"
+ranking = "5"
+lastFive = "W W L W W"
+division = "Heavyweight"
+type = "Striker"
+odds = -325
 
 
-    [fights.fighter_b]
-    name = "Yadong Song"
-    record = "22-8-1"
-    ranking = "5"
-    lastFive = "W L W W L"
-    division = "Bantamweight"
-    type = "Striker"
-    odds = +185
+[fights.fighter_b]
+name = "Derrick Lewis"
+record = "29-12-0"
+ranking = "8"
+lastFive = "W W L W L"
+division = "Heavyweight"
+type = "Striker"
+odds = +260
 
 [[fights]]
 order = 4
 
-    [fights.fighter_a]
-    name = "Waldo Cortes-Acosta"
-    record = "16-2-0"
-    ranking = "5"
-    lastFive = "W W L W W"
-    division = "Heavyweight"
-    type = "Striker"
-    odds = -300
+[fights.fighter_a]
+name = "Natalia Silva"
+record = "19-5-1"
+ranking = "2"
+lastFive = "W W W W W"
+division = "Flyweight"
+type = "Striker"
+odds = -320
 
 
-    [fights.fighter_b]
-    name = "Derrick Lewis"
-    record = "29-12-0"
-    ranking = "8"
-    lastFive = "W W L W L"
-    division = "Heavyweight"
-    type = "Striker"
-    odds = +240
+[fights.fighter_b]
+name = "Rose Namajunas"
+record = "14-7-0"
+ranking = "6"
+lastFive = "W L W W L"
+division = "Flyweight"
+type = "Striker"
+odds = +250
 
 [[fights]]
 order = 5 # main card opener
 
-    [fights.fighter_a]
-    name = "Arnold Allen"
-    record = "20-3-0"
-    ranking = "6"
-    lastFive = "W L L W W"
-    division = "Featherweight"
-    type = "Striker"
-    odds = +180
+[fights.fighter_a]
+name = "Arnold Allen"
+record = "20-3-0"
+ranking = "6"
+lastFive = "W L L W W"
+division = "Featherweight"
+type = "Striker"
+odds = +190
 
 
-    [fights.fighter_b]
-    name = "Jean Silva"
-    record = "16-3-0"
-    ranking = "10"
-    lastFive = "L W W W W"
-    division = "Featherweight"
-    type = "Striker"
-    odds = -235
+[fights.fighter_b]
+name = "Jean Silva"
+record = "16-3-0"
+ranking = "10"
+lastFive = "L W W W W"
+division = "Featherweight"
+type = "Striker"
+odds = -235
