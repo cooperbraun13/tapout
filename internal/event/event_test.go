@@ -6,7 +6,7 @@ import (
 )
 
 func TestLoadAll(t *testing.T) {
-	events, err := LoadAll("../../events") // Path relative to test file
+	events, err := LoadAll() // Path relative to test file
 	if err != nil {
 		t.Fatalf("LoadAll failed: %v", err)
 	}
