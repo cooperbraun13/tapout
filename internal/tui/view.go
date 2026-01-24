@@ -2,7 +2,9 @@ package tui
 
 import (
 	"fmt"
-	"strings"
+
+	"github.com/charmbracelet/lipgloss"
+	"github.com/cooperbraun13/tapout/internal/event"
 )
 
 func (m Model) View() string {
@@ -20,134 +22,207 @@ func (m Model) View() string {
 }
 
 func (m Model) viewEventList() string {
-	var b strings.Builder
+	// Render the list
+	content := m.EventList.View()
 
-	b.WriteString("╔══════════════════════════════════════╗\n")
-	b.WriteString("║            TAPOUT - EVENTS           ║\n")
-	b.WriteString("╚══════════════════════════════════════╝\n\n")
+	// Help bar
+	help := m.renderHelp("↑/↓ navigate", "enter select", "q quit")
 
-	if len(m.Events) == 0 {
-		b.WriteString("  No events found.\n")
-	} else {
-		for i, event := range m.Events {
-			cursor := "  "
-			if i == m.EventCursor {
-				cursor = "> "
-			}
-
-			b.WriteString(fmt.Sprintf("%s┌────────────────────────────────────┐\n", cursor))
-			b.WriteString(fmt.Sprintf("  │ %-34s │\n", event.Name))
-			b.WriteString(fmt.Sprintf("  │ %-34s │\n", event.Date))
-			b.WriteString(fmt.Sprintf("  │ %-34s │\n", event.Location))
-			b.WriteString("  └────────────────────────────────────┘\n")
-		}
-	}
-
-	b.WriteString("\n  [j/k] navigate  [enter] select  [q] quit\n")
-	return b.String()
+	return lipgloss.JoinVertical(lipgloss.Left, content, help)
 }
 
 func (m Model) viewFightList() string {
-	var b strings.Builder
-
 	if m.SelectedEvent == nil {
 		return "No event selected"
 	}
 
-	e := m.SelectedEvent
-	b.WriteString("╔══════════════════════════════════════╗\n")
-	b.WriteString(fmt.Sprintf("║ %-36s ║\n", e.Name))
-	b.WriteString(fmt.Sprintf("║ %-36s ║\n", e.Date+" - "+e.Venue))
-	b.WriteString("╚══════════════════════════════════════╝\n\n")
+	// Header with event info
+	header := m.Styles.Title.Render(m.SelectedEvent.Name)
+	subtitle := m.Styles.Muted.Render(fmt.Sprintf("%s • %s", m.SelectedEvent.Date, m.SelectedEvent.Venue))
 
-	for i, fight := range e.Fights {
-		cursor := "  "
-		if i == m.FightCursor {
-			cursor = "> "
-		}
+	headerBlock := lipgloss.JoinVertical(lipgloss.Left, header, subtitle, "")
 
-		// Check if this fight has a pick
-		picked := " "
-		if _, ok := m.Picks.Results[fight.Order]; ok {
-			picked = "✓"
-		}
+	// Fight list
+	content := m.FightList.View()
 
-		b.WriteString(fmt.Sprintf("%s[%s] %s vs %s\n",
-			cursor,
-			picked,
-			fight.FighterA.Name,
-			fight.FighterB.Name,
-		))
-	}
+	// Progress
+	progress := m.Styles.Muted.Render(
+		fmt.Sprintf("Picks: %d/%d", len(m.Picks.Results), len(m.SelectedEvent.Fights)),
+	)
 
-	b.WriteString("\n  [j/k] navigate  [enter] view fight  [s] summary  [esc] back\n")
-	return b.String()
+	// Help bar
+	help := m.renderHelp("↑/↓ navigate", "enter view", "s summary", "esc back")
+
+	return lipgloss.JoinVertical(lipgloss.Left, headerBlock, content, "", progress, help)
 }
 
 func (m Model) viewFightDetail() string {
-	var b strings.Builder
-
 	if m.SelectedEvent == nil || m.FightCursor >= len(m.SelectedEvent.Fights) {
 		return "No fight selected"
 	}
 
 	fight := m.SelectedEvent.Fights[m.FightCursor]
 	a := fight.FighterA
-	bFighter := fight.FighterB
+	b := fight.FighterB
 
-	b.WriteString("╔═══════════════════════════════════════════════════════════════════╗\n")
-	b.WriteString(fmt.Sprintf("║ %-29s  VS   %29s ║\n", a.Name, bFighter.Name))
-	b.WriteString("╠═══════════════════════════════════════════════════════════════════╣\n")
-	b.WriteString(fmt.Sprintf("║ Record:   %-21s │ Record:   %21s ║\n", a.Record, bFighter.Record))
-	b.WriteString(fmt.Sprintf("║ Ranking:  %-21s │ Ranking:  %21s ║\n", a.Ranking, bFighter.Ranking))
-	b.WriteString(fmt.Sprintf("║ Last 5:   %-21s │ Last 5:   %21s ║\n", a.LastFive, bFighter.LastFive))
-	b.WriteString(fmt.Sprintf("║ Division: %-21s │ Division: %21s ║\n", a.Division, bFighter.Division))
-	b.WriteString(fmt.Sprintf("║ Odds:     %-21d │ Odds:     %21d ║\n", a.Odds, bFighter.Odds))
-	b.WriteString("╚═══════════════════════════════════════════════════════════════════╝\n\n")
+	// Title
+	title := m.Styles.Title.Render("FIGHT DETAILS")
+
+	// Fighter A card
+	fighterAStyle := m.Styles.FighterCard
+	if m.PickCursor == 0 {
+		fighterAStyle = m.Styles.FighterCardSelected
+	}
+	fighterACard := m.renderFighterCard(a, fighterAStyle)
+
+	// VS separator
+	vs := lipgloss.NewStyle().
+		Foreground(RedPrimary).
+		Bold(true).
+		Padding(4, 2).
+		Render("VS")
+
+	// Fighter B card
+	fighterBStyle := m.Styles.FighterCard
+	if m.PickCursor == 1 {
+		fighterBStyle = m.Styles.FighterCardSelected
+	}
+	fighterBCard := m.renderFighterCard(b, fighterBStyle)
+
+	// Join fighters horizontally
+	comparison := lipgloss.JoinHorizontal(lipgloss.Center, fighterACard, vs, fighterBCard)
+
+	// Selection prompt
+	prompt := m.Styles.Muted.Render("Pick your winner:")
 
 	// Selection boxes
-	boxA := "[ " + a.Name + " ]"
-	boxB := "[ " + bFighter.Name + " ]"
+	boxA := m.renderPickBox(a.Name, m.PickCursor == 0)
+	boxB := m.renderPickBox(b.Name, m.PickCursor == 1)
+	boxes := lipgloss.JoinHorizontal(lipgloss.Center, boxA, "    ", boxB)
 
-	if m.PickCursor == 0 {
-		boxA = "[>" + a.Name + "<]"
-	} else {
-		boxB = "[>" + bFighter.Name + "<]"
-	}
+	// Help bar
+	help := m.renderHelp("←/→ switch", "enter confirm", "esc back")
 
-	b.WriteString("  Pick your winner:\n\n")
-	b.WriteString(fmt.Sprintf("    %s     %s\n", boxA, boxB))
-
-	b.WriteString("\n  [h/l] switch  [enter] confirm pick  [esc] back\n")
-	return b.String()
+	return lipgloss.JoinVertical(lipgloss.Center,
+		title,
+		"",
+		comparison,
+		"",
+		prompt,
+		boxes,
+		"",
+		help,
+	)
 }
 
 func (m Model) viewSummary() string {
-	var b strings.Builder
-
 	if m.SelectedEvent == nil {
 		return "No event selected"
 	}
 
-	e := m.SelectedEvent
-	b.WriteString("╔══════════════════════════════════════╗\n")
-	b.WriteString("║           YOUR PICKS SUMMARY         ║\n")
-	b.WriteString("╚══════════════════════════════════════╝\n\n")
+	// Title
+	title := m.Styles.Title.Render("YOUR PICKS")
+	subtitle := m.Styles.Subtitle.Render(m.SelectedEvent.Name)
 
-	b.WriteString(fmt.Sprintf("  Event: %s\n\n", e.Name))
+	// Build picks list
+	var picksContent string
+	for _, fight := range m.SelectedEvent.Fights {
+		fightLine := fmt.Sprintf("%s vs %s", fight.FighterA.Name, fight.FighterB.Name)
 
-	for _, fight := range e.Fights {
 		pick, ok := m.Picks.Results[fight.Order]
+		var pickLine string
 		if ok {
-			b.WriteString(fmt.Sprintf("  %s vs %s\n", fight.FighterA.Name, fight.FighterB.Name))
-			b.WriteString(fmt.Sprintf("    → Winner: %s\n\n", pick.Name))
+			indicator := m.Styles.Success.Render("✓")
+			winner := m.Styles.Accent.Render(pick.Name)
+			pickLine = fmt.Sprintf("  %s %s\n    → %s\n", indicator, fightLine, winner)
 		} else {
-			b.WriteString(fmt.Sprintf("  %s vs %s\n", fight.FighterA.Name, fight.FighterB.Name))
-			b.WriteString("    → No pick made\n\n")
+			indicator := m.Styles.Warning.Render("○")
+			pickLine = fmt.Sprintf("  %s %s\n    → %s\n", indicator, fightLine, m.Styles.Muted.Render("No pick"))
 		}
+		picksContent += pickLine + "\n"
 	}
 
-	b.WriteString(fmt.Sprintf("  Total picks: %d/%d\n", len(m.Picks.Results), len(e.Fights)))
-	b.WriteString("\n  [enter] save & quit  [esc] back\n")
-	return b.String()
+	// Stats
+	total := len(m.SelectedEvent.Fights)
+	picked := len(m.Picks.Results)
+	stats := m.Styles.Muted.Render(fmt.Sprintf("Total: %d/%d picks", picked, total))
+
+	// Container
+	content := lipgloss.JoinVertical(lipgloss.Left,
+		title,
+		subtitle,
+		"",
+		picksContent,
+		stats,
+	)
+
+	box := m.Styles.Box.Render(content)
+
+	// Help bar
+	help := m.renderHelp("enter save & quit", "esc back")
+
+	return lipgloss.JoinVertical(lipgloss.Left, box, "", help)
 }
+
+// Helper functions
+
+func (m Model) renderFighterCard(f Fighter, style lipgloss.Style) string {
+	name := m.Styles.FighterName.Render(f.Name)
+
+	stats := []string{
+		m.renderStat("Record", f.Record),
+		m.renderStat("Ranking", f.Ranking),
+		m.renderStat("Last 5", f.LastFive),
+		m.renderStat("Division", f.Division),
+		m.renderStat("Odds", fmt.Sprintf("%d", f.Odds)),
+	}
+
+	content := lipgloss.JoinVertical(lipgloss.Left, append([]string{name, ""}, stats...)...)
+	return style.Render(content)
+}
+
+func (m Model) renderStat(label, value string) string {
+	l := m.Styles.FighterStatLabel.Render(label + ":")
+	v := m.Styles.FighterStat.Render(value)
+	return l + " " + v
+}
+
+func (m Model) renderPickBox(name string, selected bool) string {
+	style := lipgloss.NewStyle().
+		Padding(0, 2).
+		Border(lipgloss.RoundedBorder())
+
+	if selected {
+		style = style.
+			BorderForeground(RedPrimary).
+			Foreground(White).
+			Background(RedPrimary).
+			Bold(true)
+	} else {
+		style = style.
+			BorderForeground(GrayDark).
+			Foreground(GrayLight)
+	}
+
+	return style.Render(name)
+}
+
+func (m Model) renderHelp(bindings ...string) string {
+	var parts []string
+	for _, b := range bindings {
+		parts = append(parts, m.Styles.HelpDesc.Render(b))
+	}
+
+	help := ""
+	for i, p := range parts {
+		if i > 0 {
+			help += m.Styles.Muted.Render(" • ")
+		}
+		help += p
+	}
+
+	return m.Styles.HelpBar.Render(help)
+}
+
+// Import Fighter type for use in helper
+type Fighter = event.Fighter
