@@ -10,15 +10,21 @@ import (
 
 type Picks struct {
 	Event   *event.Event
-	Results map[int]event.Fighter // Maps fight to the winning fighter
+	Results map[int]event.Fighter // Maps fight order to the winning fighter
 }
 
-// Save picks to json
+// Save picks to json with pretty formatting
 func (p *Picks) Save() error {
 	// Directory where we create our result files
 	dir := "picks"
-	// Convert our struct into a JSON-formatted byte slice
-	data, err := json.Marshal(p)
+
+	// Ensure the picks directory exists
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		return err
+	}
+
+	// Convert our struct into a pretty-formatted JSON byte slice
+	data, err := json.MarshalIndent(p, "", "  ")
 	if err != nil {
 		return err
 	}
@@ -41,7 +47,34 @@ func (p *Picks) Save() error {
 	return nil
 }
 
-// Function to load picks from json (for viewing past picks)
-func LoadPicks(path string) (*Picks, error) {
-	return nil, nil
+// LoadPicks loads picks from json for a given event slug
+// Returns nil with no error if the file doesn't exist (new event)
+func LoadPicks(slug string) (*Picks, error) {
+	dir := "picks"
+	filename := slug + ".json"
+	fullPath := filepath.Join(dir, filename)
+
+	// Check if file exists
+	if _, err := os.Stat(fullPath); os.IsNotExist(err) {
+		return nil, nil // No picks file yet, not an error
+	}
+
+	// Read the file
+	data, err := os.ReadFile(fullPath)
+	if err != nil {
+		return nil, err
+	}
+
+	// Unmarshal into Picks struct
+	var picks Picks
+	if err := json.Unmarshal(data, &picks); err != nil {
+		return nil, err
+	}
+
+	// Ensure Results map is initialized even if empty in JSON
+	if picks.Results == nil {
+		picks.Results = make(map[int]event.Fighter)
+	}
+
+	return &picks, nil
 }

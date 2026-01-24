@@ -4,6 +4,7 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/cooperbraun13/tapout/internal/event"
+	"github.com/cooperbraun13/tapout/internal/picks"
 )
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -50,8 +51,14 @@ func (m Model) updateEventList(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		if item, ok := m.EventList.SelectedItem().(EventItem); ok {
 			m.SelectedEvent = &item.Event
 			m.Picks.Event = m.SelectedEvent
-			m.Picks.Results = make(map[int]event.Fighter)
 			m.FightCursor = 0
+
+			// Try to load existing picks for this event
+			if existingPicks, err := picks.LoadPicks(item.Event.Slug); err == nil && existingPicks != nil {
+				m.Picks.Results = existingPicks.Results
+			} else {
+				m.Picks.Results = make(map[int]event.Fighter)
+			}
 
 			// Create fight list for selected event
 			m.FightList = NewFightList(
@@ -120,6 +127,9 @@ func (m Model) updateFightDetail(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			} else {
 				m.Picks.Results[fight.Order] = fight.FighterB
 			}
+
+			// Auto-save picks after each selection
+			m.Picks.Save()
 
 			// Rebuild fight list to reflect new pick
 			m.FightList = NewFightList(
