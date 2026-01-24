@@ -53,9 +53,16 @@ func (m Model) updateEventList(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			m.Picks.Event = m.SelectedEvent
 			m.FightCursor = 0
 
-			// Try to load existing picks for this event
+			// Load existing picks
 			if existingPicks, err := picks.LoadPicks(item.Event.Slug); err == nil && existingPicks != nil {
-				m.Picks.Results = existingPicks.Results
+				// Filter out picks for fights that no longer exist
+				validPicks := make(map[int]event.Fighter)
+				for _, fight := range item.Event.Fights {
+					if pick, ok := existingPicks.Results[fight.Order]; ok {
+						validPicks[fight.Order] = pick
+					}
+				}
+				m.Picks.Results = validPicks
 			} else {
 				m.Picks.Results = make(map[int]event.Fighter)
 			}
