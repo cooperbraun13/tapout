@@ -28,6 +28,9 @@ type Model struct {
 	SelectedEvent *event.Event // The event user selected
 	FightCursor   int          // Cursor position on fight list
 
+	// Fight detail state
+	PickCursor int // 0 = Fighter A, 1 = Fighter B
+
 	// Picks state
 	Picks picks.Picks // User's picks (maps fight order -> chosen fighter)
 }
