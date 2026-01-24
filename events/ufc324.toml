@@ -112,3 +112,135 @@ lastFive = "L W W W W"
 division = "Featherweight"
 type = "Striker"
 odds = -235
+
+[[fights]]
+order = 6
+
+[fights.fighter_a]
+name = "Umar Nurmagomedov"
+record = "19-1-0"
+ranking = "2"
+lastFive = "W L W W W"
+division = "Bantamweight"
+type = "Grappler"
+odds = -1600
+
+
+[fights.fighter_b]
+name = "Deiveson Figueiredo"
+record = "25-5-1"
+ranking = "6"
+lastFive = "W L L W W"
+division = "Bantamweight"
+type = "Striker"
+odds = +900
+
+[[fights]]
+order = 7
+
+[fights.fighter_a]
+name = "Ateba Gautier"
+record = "9-1-0"
+ranking = "NR"
+lastFive = "W W W W W"
+division = "Middleweight"
+type = "Striker"
+odds = -1000
+
+
+[fights.fighter_b]
+name = "Andrey Pulyaev"
+record = "10-3-0"
+ranking = "NR"
+lastFive = "W L W W W"
+division = "Middleweight"
+type = "Striker"
+odds = +650
+
+[[fights]]
+order = 8
+
+[fights.fighter_a]
+name = "Nikita Krylov"
+record = "30-11-0"
+ranking = "13"
+lastFive = "L L W W W"
+division = "Light Heavyweight"
+type = "Striker"
+odds = +115
+
+
+[fights.fighter_b]
+name = "Modestas Bukauskas"
+record = "19-6-0"
+ranking = "NR"
+lastFive = "W W W W L"
+division = "Light Heavyweight"
+type = "Striker"
+odds = -135
+
+[[fights]]
+order = 9
+
+[fights.fighter_a]
+name = "Alex Perez"
+record = "25-10-0"
+ranking = "11"
+lastFive = "L L W L L"
+division = "Flyweight"
+type = "Striker"
+odds = +145
+
+
+[fights.fighter_b]
+name = "Charles Johnson"
+record = "18-7-0"
+ranking = "13"
+lastFive = "W L W W W"
+division = "Flyweight"
+type = "Striker"
+odds = -170
+
+[[fights]]
+order = 10
+
+[fights.fighter_a]
+name = "Josh Hokit"
+record = "7-0-0"
+ranking = "NR"
+lastFive = "W W W W W"
+division = "Heavyweight"
+type = "Striker"
+odds = -275
+
+
+[fights.fighter_b]
+name = "Denzel Freeman"
+record = "7-1-0"
+ranking = "NR"
+lastFive = "W W W L W"
+division = "Heavyweight"
+type = "Striker"
+odds = +220
+
+[[fights]]
+order = 11
+
+[fights.fighter_a]
+name = "Ty Miller"
+record = "6-0-0"
+ranking = "NR"
+lastFive = "W W NC W W"
+division = "Welterweight"
+type = "Striker"
+odds = -450
+
+
+[fights.fighter_b]
+name = "Adam Fugitt"
+record = "16-3-0"
+ranking = "NR"
+lastFive = "L L W L W"
+division = "Welterweight"
+type = "Striker"
+odds = +340

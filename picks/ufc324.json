@@ -15,7 +15,7 @@
           "LastFive": "W L W W L",
           "Division": "Lightweight",
           "Type": "Striker",
-          "Odds": 165
+          "Odds": 200
         },
         "FighterB": {
           "Name": "Paddy Pimblett",
@@ -24,32 +24,11 @@
           "LastFive": "W W W W W",
           "Division": "Lightweight",
           "Type": "Grappler",
-          "Odds": -215
+          "Odds": -250
         }
       },
       {
         "Order": 2,
-        "FighterA": {
-          "Name": "Kayla Harrison",
-          "Record": "19-1-0",
-          "Ranking": "C",
-          "LastFive": "W W W W L",
-          "Division": "Bantamweight",
-          "Type": "Grappler",
-          "Odds": -210
-        },
-        "FighterB": {
-          "Name": "Amanda Nunes",
-          "Record": "23-5-0",
-          "Ranking": "Unranked",
-          "LastFive": "W W L W W",
-          "Division": "Bantamweight",
-          "Type": "Striker",
-          "Odds": 160
-        }
-      },
-      {
-        "Order": 3,
         "FighterA": {
           "Name": "Sean O'Malley",
           "Record": "18-3-0",
@@ -57,7 +36,7 @@
           "LastFive": "L L W W W",
           "Division": "Bantamweight",
           "Type": "Striker",
-          "Odds": -250
+          "Odds": -220
         },
         "FighterB": {
           "Name": "Yadong Song",
@@ -66,11 +45,11 @@
           "LastFive": "W L W W L",
           "Division": "Bantamweight",
           "Type": "Striker",
-          "Odds": 185
+          "Odds": 180
         }
       },
       {
-        "Order": 4,
+        "Order": 3,
         "FighterA": {
           "Name": "Waldo Cortes-Acosta",
           "Record": "16-2-0",
@@ -78,7 +57,7 @@
           "LastFive": "W W L W W",
           "Division": "Heavyweight",
           "Type": "Striker",
-          "Odds": -300
+          "Odds": -325
         },
         "FighterB": {
           "Name": "Derrick Lewis",
@@ -87,7 +66,28 @@
           "LastFive": "W W L W L",
           "Division": "Heavyweight",
           "Type": "Striker",
-          "Odds": 240
+          "Odds": 260
+        }
+      },
+      {
+        "Order": 4,
+        "FighterA": {
+          "Name": "Natalia Silva",
+          "Record": "19-5-1",
+          "Ranking": "2",
+          "LastFive": "W W W W W",
+          "Division": "Flyweight",
+          "Type": "Striker",
+          "Odds": -320
+        },
+        "FighterB": {
+          "Name": "Rose Namajunas",
+          "Record": "14-7-0",
+          "Ranking": "6",
+          "LastFive": "W L W W L",
+          "Division": "Flyweight",
+          "Type": "Striker",
+          "Odds": 250
         }
       },
       {
@@ -99,7 +99,7 @@
           "LastFive": "W L L W W",
           "Division": "Featherweight",
           "Type": "Striker",
-          "Odds": 180
+          "Odds": 190
         },
         "FighterB": {
           "Name": "Jean Silva",
@@ -109,6 +109,132 @@
           "Division": "Featherweight",
           "Type": "Striker",
           "Odds": -235
+        }
+      },
+      {
+        "Order": 6,
+        "FighterA": {
+          "Name": "Umar Nurmagomedov",
+          "Record": "19-1-0",
+          "Ranking": "2",
+          "LastFive": "W L W W W",
+          "Division": "Bantamweight",
+          "Type": "Grappler",
+          "Odds": -1600
+        },
+        "FighterB": {
+          "Name": "Deiveson Figueiredo",
+          "Record": "25-5-1",
+          "Ranking": "6",
+          "LastFive": "W L L W W",
+          "Division": "Bantamweight",
+          "Type": "Striker",
+          "Odds": 900
+        }
+      },
+      {
+        "Order": 7,
+        "FighterA": {
+          "Name": "Ateba Gautier",
+          "Record": "9-1-0",
+          "Ranking": "NR",
+          "LastFive": "W W W W W",
+          "Division": "Middleweight",
+          "Type": "Striker",
+          "Odds": -1000
+        },
+        "FighterB": {
+          "Name": "Andrey Pulyaev",
+          "Record": "10-3-0",
+          "Ranking": "NR",
+          "LastFive": "W L W W W",
+          "Division": "Middleweight",
+          "Type": "Striker",
+          "Odds": 650
+        }
+      },
+      {
+        "Order": 8,
+        "FighterA": {
+          "Name": "Nikita Krylov",
+          "Record": "30-11-0",
+          "Ranking": "13",
+          "LastFive": "L L W W W",
+          "Division": "Light Heavyweight",
+          "Type": "Striker",
+          "Odds": 115
+        },
+        "FighterB": {
+          "Name": "Modestas Bukauskas",
+          "Record": "19-6-0",
+          "Ranking": "NR",
+          "LastFive": "W W W W L",
+          "Division": "Light Heavyweight",
+          "Type": "Striker",
+          "Odds": -135
+        }
+      },
+      {
+        "Order": 9,
+        "FighterA": {
+          "Name": "Alex Perez",
+          "Record": "25-10-0",
+          "Ranking": "11",
+          "LastFive": "L L W L L",
+          "Division": "Flyweight",
+          "Type": "Striker",
+          "Odds": 145
+        },
+        "FighterB": {
+          "Name": "Charles Johnson",
+          "Record": "18-7-0",
+          "Ranking": "13",
+          "LastFive": "W L W W W",
+          "Division": "Flyweight",
+          "Type": "Striker",
+          "Odds": -170
+        }
+      },
+      {
+        "Order": 10,
+        "FighterA": {
+          "Name": "Josh Hokit",
+          "Record": "7-0-0",
+          "Ranking": "NR",
+          "LastFive": "W W W W W",
+          "Division": "Heavyweight",
+          "Type": "Striker",
+          "Odds": -275
+        },
+        "FighterB": {
+          "Name": "Denzel Freeman",
+          "Record": "7-1-0",
+          "Ranking": "NR",
+          "LastFive": "W W W L W",
+          "Division": "Heavyweight",
+          "Type": "Striker",
+          "Odds": 220
+        }
+      },
+      {
+        "Order": 11,
+        "FighterA": {
+          "Name": "Ty Miller",
+          "Record": "6-0-0",
+          "Ranking": "NR",
+          "LastFive": "W W NC W W",
+          "Division": "Welterweight",
+          "Type": "Striker",
+          "Odds": -450
+        },
+        "FighterB": {
+          "Name": "Adam Fugitt",
+          "Record": "16-3-0",
+          "Ranking": "NR",
+          "LastFive": "L L W L W",
+          "Division": "Welterweight",
+          "Type": "Striker",
+          "Odds": 340
         }
       }
     ]
@@ -121,34 +247,52 @@
       "LastFive": "W W W W W",
       "Division": "Lightweight",
       "Type": "Grappler",
-      "Odds": -215
+      "Odds": -250
+    },
+    "10": {
+      "Name": "Josh Hokit",
+      "Record": "7-0-0",
+      "Ranking": "NR",
+      "LastFive": "W W W W W",
+      "Division": "Heavyweight",
+      "Type": "Striker",
+      "Odds": -275
+    },
+    "11": {
+      "Name": "Ty Miller",
+      "Record": "6-0-0",
+      "Ranking": "NR",
+      "LastFive": "W W NC W W",
+      "Division": "Welterweight",
+      "Type": "Striker",
+      "Odds": -450
     },
     "2": {
-      "Name": "Kayla Harrison",
-      "Record": "19-1-0",
-      "Ranking": "C",
-      "LastFive": "W W W W L",
-      "Division": "Bantamweight",
-      "Type": "Grappler",
-      "Odds": -210
-    },
-    "3": {
       "Name": "Sean O'Malley",
       "Record": "18-3-0",
       "Ranking": "3",
       "LastFive": "L L W W W",
       "Division": "Bantamweight",
       "Type": "Striker",
-      "Odds": -250
+      "Odds": -220
     },
-    "4": {
+    "3": {
       "Name": "Waldo Cortes-Acosta",
       "Record": "16-2-0",
       "Ranking": "5",
       "LastFive": "W W L W W",
       "Division": "Heavyweight",
       "Type": "Striker",
-      "Odds": -300
+      "Odds": -325
+    },
+    "4": {
+      "Name": "Natalia Silva",
+      "Record": "19-5-1",
+      "Ranking": "2",
+      "LastFive": "W W W W W",
+      "Division": "Flyweight",
+      "Type": "Striker",
+      "Odds": -320
     },
     "5": {
       "Name": "Jean Silva",
@@ -158,6 +302,42 @@
       "Division": "Featherweight",
       "Type": "Striker",
       "Odds": -235
+    },
+    "6": {
+      "Name": "Umar Nurmagomedov",
+      "Record": "19-1-0",
+      "Ranking": "2",
+      "LastFive": "W L W W W",
+      "Division": "Bantamweight",
+      "Type": "Grappler",
+      "Odds": -1600
+    },
+    "7": {
+      "Name": "Ateba Gautier",
+      "Record": "9-1-0",
+      "Ranking": "NR",
+      "LastFive": "W W W W W",
+      "Division": "Middleweight",
+      "Type": "Striker",
+      "Odds": -1000
+    },
+    "8": {
+      "Name": "Modestas Bukauskas",
+      "Record": "19-6-0",
+      "Ranking": "NR",
+      "LastFive": "W W W W L",
+      "Division": "Light Heavyweight",
+      "Type": "Striker",
+      "Odds": -135
+    },
+    "9": {
+      "Name": "Charles Johnson",
+      "Record": "18-7-0",
+      "Ranking": "13",
+      "LastFive": "W L W W W",
+      "Division": "Flyweight",
+      "Type": "Striker",
+      "Odds": -170
     }
   }
 }
