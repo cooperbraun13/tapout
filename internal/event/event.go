@@ -47,13 +47,15 @@ func LoadAll() ([]Event, error) {
 		log.Fatalf("Failed to get the list of files from given directory: %v", err)
 	}
 
-	// Event variable that will be reused for decoding each file
-	var event Event
 	for _, file := range files {
 		// Filter only for .toml files right now (because thats the only type of file we expect)
 		if filepath.Ext(file.Name()) != ".toml" {
 			continue
 		}
+
+		// Create fresh event for each file (prevents fights bleeding between events)
+		var event Event
+
 		// Extract slug to use as an identifier: "ufc324.toml" -> "ufc324"
 		// Can use this so our picks file saves with the same name
 		slug := strings.TrimSuffix(file.Name(), ".toml")
