@@ -1,0 +1,114 @@
+name = "UFC 325"
+date = "2026-01-31"
+location = "Sydney, New South Wales, Australia"
+venue = "Qudos Bank Arena"
+
+[[fights]]
+order = 1 # main event
+
+[fights.fighter_a]
+name = "Alexander Volkanovski"
+record = "27-4-0"
+ranking = "C"
+lastFive = "W L L W L"
+division = "Featherweight"
+type = "Hybrid"
+odds = -160
+
+
+[fights.fighter_b]
+name = "Diego Lopes"
+record = "27-7-0"
+ranking = "2"
+lastFive = "W L W W W"
+division = "Lightweight"
+type = "Hybrid"
+odds = +125
+
+[[fights]]
+order = 2 # co-main event
+
+[fights.fighter_a]
+name = "Dan Hooker"
+record = "24-13-0"
+ranking = "6"
+lastFive = "L W W W L"
+division = "Lightweight"
+type = "Striker"
+odds = +240
+
+
+[fights.fighter_b]
+name = "Benoit Saint-Denis"
+record = "16-3-0"
+ranking = "8"
+lastFive = "W W W L L"
+division = "Lightweight"
+type = "Grappler"
+odds = -320
+
+[[fights]]
+order = 3
+
+[fights.fighter_a]
+name = "Rafael Fiziev"
+record = "13-4-0"
+ranking = "9"
+lastFive = "W L L L W"
+division = "Lightweight"
+type = "Striker"
+odds = -130
+
+
+[fights.fighter_b]
+name = "Mauricio Ruffy"
+record = "12-2-0"
+ranking = "14"
+lastFive = "L W W W W"
+division = "Lightweight"
+type = "Striker"
+odds = +100
+
+[[fights]]
+order = 4
+
+[fights.fighter_a]
+name = "Tai Tuivasa"
+record = "14-8-0"
+ranking = "12"
+lastFive = "L L L L L"
+division = "Heavyweight"
+type = "Striker"
+odds = +240
+
+
+[fights.fighter_b]
+name = "Tallison Teixeira"
+record = "8-1-0"
+ranking = "15"
+lastFive = "L W W W W"
+division = "Heavyweight"
+type = "Striker"
+odds = -325
+
+[[fights]]
+order = 5 # main card opener
+
+[fights.fighter_a]
+name = "Quillan Salkilld"
+record = "10-1-0"
+ranking = "NR"
+lastFive = "W W W W W"
+division = "Lightweight"
+type = "Striker"
+odds = -100
+
+
+[fights.fighter_b]
+name = "Jamie Mullarkey"
+record = "18-8-0"
+ranking = "NR"
+lastFive = "W L L W L"
+division = "Lightweight"
+type = "Striker"
+odds = +100

@@ -132,7 +132,7 @@ record = "25-5-1"
 ranking = "6"
 lastFive = "W L L W W"
 division = "Bantamweight"
-type = "Striker"
+type = "Hybrid"
 odds = +900
 
 [[fights]]
@@ -166,7 +166,7 @@ record = "30-11-0"
 ranking = "13"
 lastFive = "L L W W W"
 division = "Light Heavyweight"
-type = "Striker"
+type = "Hybrid"
 odds = +115
 
 
