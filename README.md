@@ -70,4 +70,4 @@ tapout/
 
 ## Maintenance
 
-Events and fights will be updated up to the day of by myself for the foreseeable future. Any mistakes or suggestions should be written in a pull request
+Events and fights will be updated up to the day of by myself for the foreseeable future. Any mistakes or suggestions should be written in a pull request.
